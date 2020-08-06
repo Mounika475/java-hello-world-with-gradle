@@ -32,6 +32,25 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'application'
 
+
+def getBuildVersionCode() {
+    def date = new Date()
+    def formattedDate = date.format('yyyyMMdd')
+    def formattedSeconds = date.format('HHmmssSSS')
+    def formatInt = formattedDate as int;
+    def SecondsInt = formattedSeconds as int;
+    return (formatInt + SecondsInt) as int
+}
+
+   defaultConfig {
+    applicationId "com.app"
+    minSdkVersion 17
+    targetSdkVersion 22
+    versionCode getBuildVersionCode()
+    versionName "1.0"
+}
+
+
 mainClassName = 'hello.HelloWorld'
 
 // tag::repositories[]
@@ -43,7 +62,7 @@ repositories {
 // tag::jar[]
 jar {
     baseName = 'jb-hello-world'
-    version =  '0.1.0'
+    //version =  '0.1.0'
 }
 // end::jar[]
 
